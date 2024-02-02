@@ -1,0 +1,24 @@
+name: Terrascan Scan
+
+on:
+  push:
+    branches:
+      - sanjeeveejayabalan-patch-1  # Change this to your main branch name
+
+jobs:
+  terrascan-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Terrascan
+      run: |
+        curl -L https://github.com/accurics/terrascan/releases/latest/download/terrascan-bundle-linux-amd64.tar.gz -o terrascan.tar.gz
+        tar -zxvf terrascan.tar.gz
+        sudo mv ./terrascan /usr/local/bin/terrascan
+        terrascan version
+
+    - name: Run Terrascan
+      run: terrascan scan -f argo-project/values.yaml
