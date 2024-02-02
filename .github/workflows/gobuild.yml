@@ -1,9 +1,6 @@
 name: build
 on:
-  push:
-  pull_request:
-  schedule:
-    - cron: 0 23 * * *
+  workflow_dispatch:
 jobs:
   validate:
     runs-on: ubuntu-latest
