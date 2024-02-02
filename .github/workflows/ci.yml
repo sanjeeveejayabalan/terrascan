@@ -13,13 +13,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Install Terrascan
+  - name: Install Terrascan
       run: |
-        curl -L https://github.com/accurics/terrascan/releases/latest/download/terrascan-bundle-linux-amd64.tar.gz -o terrascan.tar.gz
-        tar -xvf terrascan.tar.gz
-        sudo mv ./terrascan /usr/local/bin/terrascan
+        curl -LJO https://github.com/accurics/terrascan/releases/latest/download/terrascan-bundle-linux-amd64.tar.gz
+        tar -zxvf terrascan-bundle-linux-amd64.tar.gz
+        sudo mv terrascan /usr/local/bin/terrascan
         terrascan version
-    
 
     - name: Run Terrascan
-      run: terrascan scan -f argo-project/values.yaml
+      run: terrascan scan -d config
