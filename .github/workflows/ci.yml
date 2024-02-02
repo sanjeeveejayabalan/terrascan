@@ -13,7 +13,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-  - name: Install Terrascan
+    - name: Install Terrascan
       run: |
         curl -LJO https://github.com/accurics/terrascan/releases/latest/download/terrascan-bundle-linux-amd64.tar.gz
         tar -zxvf terrascan-bundle-linux-amd64.tar.gz
