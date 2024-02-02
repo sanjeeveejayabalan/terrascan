@@ -16,9 +16,11 @@ jobs:
     - name: Install Terrascan
       run: |
         curl -L https://github.com/accurics/terrascan/releases/latest/download/terrascan-bundle-linux-amd64.tar.gz -o terrascan.tar.gz
-        tar -zxvf terrascan.tar.gz
+        gunzip terrascan.tar.gz
+        tar -xvf terrascan.tar
         sudo mv ./terrascan /usr/local/bin/terrascan
         terrascan version
+
 
     - name: Run Terrascan
       run: terrascan scan -f argo-project/values.yaml
