@@ -6,19 +6,29 @@ on:
       - '**'
 
 jobs:
-  terrascan-scan:
+  terrascan_job:
     runs-on: ubuntu-latest
-
+    name: terrascan-action
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Install Terrascan
-      run: |
-        curl -LJO https://github.com/accurics/terrascan/releases/latest/download/terrascan-bundle-linux-amd64.tar.gz
-        tar -zxvf terrascan-bundle-linux-amd64.tar.gz
-        sudo mv terrascan /usr/local/bin/terrascan
-        terrascan version
-
     - name: Run Terrascan
-      run: terrascan scan -d config
+      id: terrascan
+      uses: tenable/terrascan-action@sanjeeveejayabalan-values.yaml
+      with:
+        iac_type: 'terraform'
+        iac_version: 'v14'
+        policy_type: 'aws'
+        only_warn: true
+        sarif_upload: true
+        #non_recursive:
+        #iac_dir:
+        #policy_path:
+        #skip_rules:
+        #config_path:
+        #webhook_url:
+        #webhook_token:
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: terrascan.sarif
