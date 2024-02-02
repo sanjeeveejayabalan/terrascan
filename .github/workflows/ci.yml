@@ -3,7 +3,7 @@ name: Terrascan Scan
 on:
   push:
     branches:
-      - sanjeeveejayabalan-patch-1  # Change this to your main branch name
+      - * * * sanjeeveejayabalan-patch-1  # Change this to your main branch name
 
 jobs:
   terrascan-scan:
