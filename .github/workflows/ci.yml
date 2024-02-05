@@ -1,24 +1,30 @@
-name: Terrascan Scan
+name: TerraScan Workflow
 
 on:
   push:
     branches:
-      - '**'
+      "**"
 
 jobs:
-  terrascan_job:
+  terrascan-job:
     runs-on: ubuntu-latest
-    name: terrascan-action
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Run Terrascan
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install TerraScan
       run: |
-          curl -L "https://github.com/tenable/terrascan/releases/download/v1.18.11/terrascan_1.18.11_Linux_x86_64.tar.gz" > terrascan.tar.gz &&
-          tar -xf terrascan.tar.gz terrascan &&
-          sudo mv terrascan /usr/local/bin/ &&
-          ls -l /usr/local/bin/ &&
-          sudo rm /usr/local/bin/terrascan.tar.g &&
-          ls -l /usr/local/bin/TerraScan.tar.g &&
-          rm -r /usr/local/bin/terrascan.tar.g
+        # Download and install TerraScan
+        curl -LJO https://github.com/accurics/terrascan/releases/latest/download/terrascan_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz
+        tar -xf terrascan_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz
+        sudo mv terrascan /usr/local/bin/
+        rm terrascan_${RUNNER_OS}_${RUNNER_ARCH}.tar.gz
+
+    - name: Run TerraScan
+      run: |
+        # Navigate to the directory containing Terraform code
+        cd path/to/terraform/code
+
+        # Run TerraScan
+        terrascan scan
