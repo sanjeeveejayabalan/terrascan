@@ -15,3 +15,15 @@ jobs:
           tar -xf terrascan.tar.gz terrascan &&
           sudo mv terrascan /usr/local/bin/ &&
           rm terrascan.tar.gz
+
+      - name: Run TerraScan
+        run: |
+           # Load values from values.yaml
+           terraformPath=$(cat values.yaml | grep 'terraformPath:' | awk '{print $2}')
+
+           # Navigate to the directory containing Terraform code
+           cd $config
+
+           # Run TerraScan
+           terrascan scan
+        
