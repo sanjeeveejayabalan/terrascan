@@ -18,4 +18,7 @@ jobs:
           curl -L "https://github.com/tenable/terrascan/releases/download/v1.18.11/terrascan_1.18.11_Linux_x86_64.tar.gz" > terrascan.tar.gz &&
           tar -xf terrascan.tar.gz terrascan &&
           sudo mv terrascan /usr/local/bin/ &&
-          rm /usr/local/bin/terrascan.tar.g
+          ls -l /usr/local/bin/ &&
+          sudo rm /usr/local/bin/terrascan.tar.g &&
+          ls -l /usr/local/bin/TerraScan.tar.g &&
+          rm -r /usr/local/bin/terrascan.tar.g
