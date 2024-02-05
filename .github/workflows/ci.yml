@@ -18,18 +18,18 @@ jobs:
 
       - name: Run TerraScan
         run: |
-           # Load values from values.yaml
-           terraformPath=$(cat values.yaml | grep 'terraformPath:' | awk '{print $2}')
+          # Load values from values.yaml
+          terraformPath=$(cat values.yaml | grep 'terraformPath:' | awk '{print $2}')
 
-           # Navigate to the directory containing Terraform code
-           cd $terraformPath
+          # Navigate to the directory containing Terraform code
+          cd $terraformPath
 
-        # Run TerraScan and save output to a file
-        terrascan scan > terrascan_output.txt
+          # Run TerraScan and save output to a file
+          terrascan scan > terrascan_output.txt
 
-      - name: Upload TerraScan Output
-        uses: actions/upload-artifact@v2
-        with:
-          name: terrascan-output
-          path: terrascan_output.txt
+     - name: Upload TerraScan Output
+       uses: actions/upload-artifact@v2
+       with:
+         name: terrascan-output
+         path: terrascan_output.txt
         
