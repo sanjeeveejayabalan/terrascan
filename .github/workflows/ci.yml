@@ -27,9 +27,9 @@ jobs:
           # Run TerraScan and save output to a file
           terrascan scan > terrascan_output.txt
 
-     - name: Upload TerraScan Output
-       uses: actions/upload-artifact@v2
-       with:
-         name: terrascan-output
-         path: terrascan_output.txt
+      - name: Upload TerraScan Output
+        uses: actions/upload-artifact@v2
+        with:
+          name: terrascan-output
+          path: terrascan_output.txt
         
