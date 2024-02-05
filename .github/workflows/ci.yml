@@ -19,10 +19,10 @@ jobs:
       - name: Run TerraScan
         run: |
            # Load values from values.yaml
-           terraformPath=$(cat values.yaml | grep 'terraformPath:' | awk '{print $2}')
+           terraformPath=$(cat config/values.yaml | grep 'terraformPath:' )
 
            # Navigate to the directory containing Terraform code
-           cd $config
+           cd $terraformPath
 
            # Run TerraScan
            terrascan scan
