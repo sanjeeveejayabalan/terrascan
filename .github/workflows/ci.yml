@@ -25,6 +25,6 @@ jobs:
           cd $terraformPath
 
           # Run TerraScan and save output to a file
-          terrascan scan > terrascan_output.txt
+          terrascan scan 
 
         
